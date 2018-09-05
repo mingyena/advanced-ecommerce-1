@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 class Header extends Component {
@@ -28,7 +27,7 @@ class Header extends Component {
                                 <a href="#">Contact</a>
                             </li>
                             <li >
-                                <a href="#">Items In Cart (0)</a>
+                                <a href="#">Items In Cart ({this.props.inreaseAmount})</a>
                             </li>
                         </ul>
                     </div>
