@@ -9,24 +9,34 @@ import Footer from './components/Footer';
 class App extends Component {
     constructor(){
         super();
-        this.changeOrderNumber=this.changeOrderNumber.bind(this);
+        this.updateOrder=this.updateOrder.bind(this);
     }
-    state={orderNumber: 0}
-    changeOrderNumber(){
+    state={orderNumber: 0,myOrder:[]};
+    updateOrder(newProduct){
+        this.setState({ myOrder: [...this.state.myOrder, newProduct] })
         this.setState({orderNumber:this.state.orderNumber + 1});
     }
+    checkout(){
+
+    }
+    componentDidMount() {
+        fetch('/checkout')
+          .then(res => res.json())
+          .then(users => this.setState({ users }));
+      }
+    
 	render() {
 		return (		
                 <div className="App">
-                  {<Header inreaseAmount={this.state.orderNumber}/>}
-                  
+                  {<Header inreaseAmount={this.state.orderNumber} checkout={this.checkout}/> }
                       <div className="container">
           
                           <div className="row">
                                   {<Sidebar/>}
                               <div className="col-md-9">
                                   {<Carousel/>}
-                                  { <ProductDetail products={this.props.products} increaseOrder={this.increaseOrder} click={this.changeOrderNumber}/> }
+                                  { <ProductDetail products={this.props.products} 
+                                    click={this.updateOrder}/> }
                               </div>
                           </div>
                       </div>

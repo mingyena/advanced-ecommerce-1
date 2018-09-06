@@ -29,6 +29,9 @@ class Header extends Component {
                             <li >
                                 <a href="#">Items In Cart ({this.props.inreaseAmount})</a>
                             </li>
+                            <li>
+                                <button onClick={()=>{this.props.checkout}}>Check out</button>
+                            </li>
                         </ul>
                     </div>
                 </div>
